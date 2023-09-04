@@ -1,0 +1,26 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<main>
+			<h1 align="center">{SITE_TITLE}</h1>
+			<errorbox>
+                <p align="center">
+				Oops ... a <a href="https://http.cat/404">404</a> error was returned.
+                </p>
+                <p align="center">
+                <a href={Astro.url.pathname}>{Astro.url.pathname}</a> could not be found.
+                </p>
+			</errorbox>
+		</main>
+	</body>
+</html>

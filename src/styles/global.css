@@ -5,32 +5,32 @@
  */
 
 :root {
-	--accent: #2337ff;
+	--accent: #0015ff;
 	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
+	--black: #000000;
 	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
+	--gray-light: 210, 225, 240;
 	--gray-dark: 34, 41, 57;
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
 	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
 }
 @font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-regular.woff') format('woff');
+	font-family: 'OpenSans';
+	src: url('/fonts/OpenSans-Regular.woff2') format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-bold.woff') format('woff');
-	font-weight: 700;
+	font-family: 'OpenSans';
+	src: url('/fonts/OpenSans-Regular.woff2') format('woff2');
+	font-weight: 1000;
 	font-style: normal;
 	font-display: swap;
 }
 body {
-	font-family: 'Atkinson', sans-serif;
+	font-family: 'OpenSans', sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -151,4 +151,13 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+errorbox {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	margin-left: 10px;
+	margin-right: 10px;
+	grid-gap: 10px;
 }
