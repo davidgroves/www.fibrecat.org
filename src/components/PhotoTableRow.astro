@@ -1,0 +1,9 @@
+---
+const { year, country, location, link} = Astro.props;
+---
+
+<tr>
+    <td>{year}</td>
+    <td>{country}</td>
+    <td><a href={link}>{location}</a></td>
+</tr>

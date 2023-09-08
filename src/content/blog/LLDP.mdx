@@ -1,0 +1,124 @@
+---
+title: 'LLDP'
+description: 'LLDP in Datacentres'
+pubDate: 'Sep 08 2023'
+heroImage: '/src/images/blog/messy-datacentre.jpeg'
+heroCredit: Massimo Botturi @ Unsplash
+heroLink: https://unsplash.com/photos/zFYUsLk_50Y
+heroAltText: A datacentre rack with messy cabling
+---
+
+import { Image } from 'astro:assets';
+import TwoRoutersAndASwitch from '../../../src/images/blog/TwoRoutersAndASwitch.png';
+
+## What is LLDP ?
+
+The TLDR version: Devices emit beacons that say who they are. These beacons go as far as the nearest Layer2 bridge.
+
+The [Juniper Summary of LLDP](https://www.juniper.net/documentation/us/en/software/junos/multicast-l2/topics/concept/layer-2-services-lldp-overview.html)
+is a good simple explanation. Perhaps a simpler one is it involves hardware using it sending out a beacon frame identifying themselves every so many seconds, and other hardware reading that and noting it. It was invented as a common,
+open standards replacement for [Cisco CDP](https://learningnetwork.cisco.com/s/article/cisco-discovery-protocol-cdp-x) and other proprietary protocols.
+
+These Layer2 discovery protocols were originally designed for use by switches and routers, and could allow quicky and easy verification that everything was connected as expected.
+
+## How is it normally used ?
+
+<Image src={TwoRoutersAndASwitch} alt="A diagram showing Router1 connected to both Switch1 and Switch2" class="center" />
+
+For example, on most Cisco switches, you could configure Router1 like.
+
+```
+hostname Router1
+lldp run
+!
+interface GigabitEthernet0/1
+  description Link to Switch1
+  lldp transmit
+!
+```
+
+And on Switch1
+
+```
+hostname Switch1 
+lldp run
+!
+interface GigabitEthernet0/2
+  description Link to Router1
+  lldp recieve
+!
+```
+
+Then, on switch1 you could use LLDP to show Router1 is connected.
+This is usually also going to be avaliable via SNMP or other router management API's.
+An example to show it on the CLI is :-
+
+```
+# show lldp neighbors
+INDEX   PORT   DEVICEID          PORT     NAME    CAPABILITIES TTL
+----------------------------------------------------------------------
+1       gi0/1  aa:bb:cc:dd:ee:ff Gi1/0/31 Router1 Bridge       93
+```
+
+## Security Implications.
+
+Across my career I've heard numerous claims that LLDP and other similar protocols are security risks.
+By default, they do indeed provide extra information to an attacker. This can include what type of
+device they are connected to and what operating system and version it is running.
+
+This does indeed break the general rule of not leaking extra information. However, it also 
+provides significant benefits, some of which can also be security benefits. You can easily tell
+if a device has been physically recabled, and you can confirm devices are cabled as designed, rather
+than merely in a way which works.
+
+I think it is unwise to say LLDP is a security benefit or risk, but rather to consider the individual
+circumstances of your deployment.
+
+## Transmitting LLDP on Unix Systems.
+
+Three main options.
+- [lldpd](https://lldpd.github.io/) - My prefered option.
+- [ladvd](https://github.com/sspans/ladvd/) - Another good option.
+- [systemd](https://www.freedesktop.org/software/systemd/man/systemd.network.html) - Generally a no-install option.
+
+The first two are standlone daemons, and can be configured quite flexibly. They also support
+proprietary protocols like CDP, EDP and the like. The last option is built into systemd which ships with most Linux distributions these days.
+
+```
+# Contents of /etc/systemd/network/lldp.conf
+LLDP=true                   # recieve LLDP
+EmitLLDP=nearest-bridge     # send LLDP
+```
+
+## Transmitting LLDP on Windows Systems.
+
+You need to install the optional LLDP agent features. On my Windows 11 system, this was. There are limited
+options to configure this agent.
+
+```
+# Run in a Administrator Powershell.
+
+PS> Add-WindowsCapability -online -Name Rsat.LLDP.Tools~~~~0.0.1.0
+```
+
+### Reading LLDP with tcpdump.
+
+If you use the tools listed above, they all have LLDP clients as well. If you don't, you can use 
+tcpdump to sniff for LLDP packets.
+
+```
+# Dump LLDP packets
+$ tcpdump -v -i any ether[12:2]=0x88cc
+
+# Dump LLDP or CDP packets
+$ tcpdump -v -i any '(ether[12:2]=0x88cc or ether[20:2]=0x2000)'
+```
+
+## My recommendations.
+
+In general, I think the benefits of running LLDP on all hosts and network equipment outweighs the risks.
+On physical environments for which I am responsible I always run `lldpd`, enable the Windows LLDP service,
+or configure the routers and switches to both emit and recieve lldp data.
+
+## Some further reading.
+

@@ -10,9 +10,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^1.0.0",
+    "@astrojs/mdx": "^1.0.2",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
-    "astro": "^3.0.7"
+    "astro": "^3.0.7",
+    "astro-diagram": "^0.7.0",
+    "fullpage.js": "^4.0.20",
+    "mdx-mermaid": "^2.0.0",
+    "mermaid": "^10.4.0",
+    "rehype-mermaidjs": "^2.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0"
   }
 }

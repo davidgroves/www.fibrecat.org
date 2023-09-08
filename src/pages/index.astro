@@ -5,22 +5,23 @@ import Footer from '../components/Footer.astro';
 import { Image } from 'astro:assets';
 import HeadShot from '../images/DavidGroves.jpg';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { ViewTransitions } from 'astro:transitions';
+import { fade } from 'astro:transitions';
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<ViewTransitions />
 	</head>
 	<body>
 		<Header title={SITE_TITLE} />
 		<main>
 			<h1 align="center">{SITE_TITLE}</h1>
 			<p align="center">
-				The personal homepage of David Groves.
-			</p>
-			<p align="center">
-				See header bar for sections.
+				The personal homepage of David Groves. By profession a multidisciplinary IT professional having worked as a Network Architect, Software Engineer and Platform Engineer. 
+				By hobby, a traveller, <a href="/photos/">photographer</a> and <a href="/dogs/">houndfather</a>.
 			</p>
 			<p align="center">
 				<style>

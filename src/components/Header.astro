@@ -1,30 +1,36 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
+import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header>
 	<nav>
 		<h2><a href="/">{SITE_TITLE}</a></h2>
 		<div class="middle-links">
-		</div>
-		<div class="right-links">
-			<a href="/">
+			<a href="/" title="Home">
 				<svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 24 24" width="32" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/>
 					<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
 				</svg>
 			</a>
-			<a href="/blog">
+			<a href="/blog" title="Blog">
 				<svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 24 24" width="32" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/>
 					<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
 				</svg>
 			</a>
-			<a href="/photos">
+			<a href="/photos" title="Photos">
 				<svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 24 24" width="32" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/>
 					<circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
 				</svg>
 			</a>
-			<a href="https://twitter.com/pumplekin" target="_blank">
+			<a href="/dogs" title="Dogs">
+				<svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+					<path d="M180-475q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm180-160q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm240 0q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm180 160q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM266-75q-45 0-75.5-34.5T160-191q0-52 35.5-91t70.5-77q29-31 50-67.5t50-68.5q22-26 51-43t63-17q34 0 63 16t51 42q28 32 49.5 69t50.5 69q35 38 70.5 77t35.5 91q0 47-30.5 81.5T694-75q-54 0-107-9t-107-9q-54 0-107 9t-107 9Z"/>
+				</svg>
+			</a>
+		</div>
+		<div class="right-links">
+			<a href="https://twitter.com/pumplekin" target="_blank" title="X/Twitter">
 				<span class="sr-only">Follow on X</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"><path
 						fill="currentColor"
@@ -32,7 +38,7 @@ import { SITE_TITLE } from '../consts';
 					></path>
 				</svg>
 			</a>
-			<a href="https://github.com/davidgroves" target="_blank">
+			<a href="https://github.com/davidgroves" target="_blank" title="Github">
 				<span class="sr-only">GitHub</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
 					><path
@@ -41,6 +47,13 @@ import { SITE_TITLE } from '../consts';
 					></path></svg
 				>
 			</a>
+			<a href="https://www.linkedin.com/in/david-groves-09827536/" target="_blank" title="LinkedIn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+				<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+			</svg>	
+			</a>
+			<a href=""
+			<ThemeIcon />
 		</div>
 	</nav>
 </header>
@@ -75,13 +88,17 @@ import { SITE_TITLE } from '../consts';
 		text-decoration: none;
 		border-bottom-color: var(--accent);
 	}
+	.middle-links,
+	.middle-links a {
+		display: flex;
+	}
 	.right-links,
 	.right-links a {
 		display: flex;
 	}
 	@media (max-width: 720px) {
 		.right-links {
-			display: none;
+			display: flex;
 		}
 	}
 </style>
