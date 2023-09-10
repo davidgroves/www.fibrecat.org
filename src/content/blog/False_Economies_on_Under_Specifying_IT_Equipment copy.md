@@ -1,7 +1,7 @@
 ---
 title: 'False Economies, IT for Engineers'
 description: 'Why organisations should ensure technical staff are working on equipment they are happy with'
-pubDate: 'Sep 10 2023'
+pubDate: 'Sep 03 2023'
 heroImage: '/src/images/blog/laptop.jpeg'
 heroCredit: Andras Vas @ Unsplash
 heroLink: https://unsplash.com/photos/Bd7gNnWJBkU
