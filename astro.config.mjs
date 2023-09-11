@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx';
 import { getLanguages } from "./src/plugins/languages";
 import sitemap from '@astrojs/sitemap';
 import { mermaid } from "./src/plugins/mermaid";
+import remarkMath from 'remark-math';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +15,6 @@ export default defineConfig({
       theme: "vitesse-light",
       langs: getLanguages()
     },
-    remarkPlugins: [mermaid]
+    remarkPlugins: [mermaid, remarkMath]
   }
 });
