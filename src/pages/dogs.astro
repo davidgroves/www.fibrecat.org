@@ -7,7 +7,6 @@ import Cyrus from '../images/Cyrus.jpg';
 import Daisy from '../images/Daisy.jpg';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { ViewTransitions } from 'astro:transitions';
-import { fade } from 'astro:transitions';
 import FAQEntry from '../components/FAQEntry.astro';
 ---
 
@@ -21,26 +20,21 @@ import FAQEntry from '../components/FAQEntry.astro';
 	<body>
 		<Header title={SITE_TITLE} />
 			<main>
-				<p>My wife and I are lucky enough to be hound parents to these two, <strong>Daisy</strong> (bottom) and <strong>Cyrus</strong> (top). 
+				<p>My wife and I are lucky enough to be hound parents to these two, <strong>Daisy</strong> (top) and <strong>Cyrus</strong> (bottom). 
 				This domain name was chosen before we got our wonderful hounds, and Daisy would most certainly not approve. 
 				Despite our best efforts I don't think she will ever consider cats to be her friends.</p>
-				<p align="center">
+				<p>
 					<style>
 						img {
-						width: 40%; /* image initial width */
-						height: 40%;
+						height: 25vw;
 						}
 						div {
 						border: none;
 						}
-						.container {
-						width: 500px; /* container initial width */
-						}
+						
 					</style>
-					<Image src={Cyrus} alt="Headshot of Cyrus, the Greyhound.">
-				</p>
-				<p align="center">
-					<Image src={Daisy} alt="Headshot of Daisy, the Greyhound.">
+					<Image src={Daisy} alt="Headshot of Daisy, the Greyhound." />
+					<Image src={Cyrus} alt="Headshot of Cyrus, the Greyhound." />
 				</p>
 			
 				<h1 class="faq-heading">FAQ'S</h1>

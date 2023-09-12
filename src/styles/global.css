@@ -44,9 +44,10 @@ body {
 }
 
 main {
-	width: 720px;
+	padding-left: 5%;
+	padding-right: 5%;
 	max-width: calc(100% - 2em);
-	margin: auto;
+	/* margin: auto; */
 	padding: 3em 1em;
 }
 h1,
@@ -89,7 +90,7 @@ p {
 	margin-bottom: 1em;
 }
 .prose p {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 textarea {
 	width: 100%;
@@ -102,10 +103,12 @@ table {
 	width: 100%;
 }
 img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
+	width: auto;
+	border-radius: 1px;
 	display: block;
+	padding-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
 }
 code {
 	padding: 2px 5px;
@@ -163,8 +166,10 @@ errorbox {
 	display: grid;
 	align-items: center;
 	justify-content: center;
+	/*
 	margin-left: 10px;
 	margin-right: 10px;
+	*/
 	grid-gap: 10px;
 }
 

@@ -16,6 +16,17 @@ import PhotoTableRow from '../components/PhotoTableRow.astro'
 		<BaseHead title={SITE_TITLE} photos />
 	</head>
     <Header title={SITE_TITLE} />
+    <style>
+        table {
+            padding-left: 10%;
+            padding-right: 10%;
+            padding-top: 2%;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+        }
+    </style>
+
     <table class="sortable searchable">
         <thead>
           <tr>
