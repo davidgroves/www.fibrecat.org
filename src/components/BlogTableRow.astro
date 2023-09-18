@@ -1,8 +1,10 @@
 ---
 const { date, title, link } = Astro.props;
+
+const my_date = new Date(date);
 ---
 
 <tr>
-    <td>{date}</td>
+    <td data-id={my_date.valueOf()}>{my_date.toLocaleDateString()}</td>
     <td><a href={link}>{title}</a></td>
 </tr>
