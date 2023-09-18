@@ -1,0 +1,110 @@
+---
+title: Is This Safe to Install ?
+description: Why do we feel safe installing some things, but feel dirty installing others ?
+pubDate: 18 September 2023
+heroImage: /src/images/blog/fonts.jpeg
+heroCredit: Fabio Santaniello Bruun @ Unsplash
+heroLink: https://unsplash.com/photos/Y6tGu-OH8lA
+heroAltText: A set of letters in different typefaces on a wall.
+---
+
+import { Image } from 'astro:assets';
+
+## Which of these actions is feels safe ?
+
+I asked a straw poll of bout 5 other network engineers, system engineers and software developers, which of
+of these methods they felt most "safe" using when installing some piece of new software on a Debian Based
+Linux distribution. In this statistically insignificant and totally selection biased based poll,  
+
+#### A. Feels nearly 100% safe.
+
+```
+#### Installing from the main Debian Repository
+$ sudo apt install firefox-esr
+```
+
+#### B. Feels mostly safe.
+
+```
+#### Installing from sources direct from major project.
+$ curl https://downloads.isc.org/isc/bind9/9.18.18/bind-9.18.18.tar.xz
+$ tar xf bind-9.18.18.tar.xz
+$ cd bind-9.18.18
+$ ./configure
+$ make
+$ sudo make install
+```
+
+#### C. Feels less safe
+
+```
+#### Installing VSCode from a 3rd party Repository
+$ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+$ sudo install -D -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/packages.microsoft.gpg
+```
+
+#### D. Feels dangerous
+
+```
+#### Running install script
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+## How dangerous are each of these things ?
+
+#### The Debian Package install.
+
+Everyone voted this to be the most safe option and I generally agree at least for important
+packages like firefox.
+
+It is important to realise that when installing 
+any package using `apt`, or `rpm` or most other unix package manager systems, you are in effect installing 
+arbitary code that could run at any privilege level, and could in principle replace any binary
+on your system with a bad one. You can do some things to mitigate these risks.
+
+For example before installing a package, you can look at what will be installed. For example.
+
+```
+$ sudo apt install --download-only firefox-esr
+$ dpkg -c /var/cache/apt/archives/firefox-esr_115.2.0esr-1_amd64.deb
+drwxr-xr-x root/root         0 2023-08-29 22:03 ./usr/bin/
+-rwxr-xr-x root/root       118 2023-08-29 22:03 ./usr/bin/firefox
+lrwxrwxrwx root/root         0 2023-08-29 22:03 ./usr/bin/firefox-esr -> ../lib/firefox-esr/firefox-esr
+...
+```
+
+So that sounds scary, why do I agree it is the safest option. Well, it is something like what
+[Eric Raymond](https://en.wikipedia.org/wiki/Eric_S._Raymond) 
+named [Linus' Law](https://en.wikipedia.org/wiki/Linus%27s_law) in his 1997 essay,
+[The Cathedral and the Bazaar](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar). In
+that essay he says that many eyes make bugs shallow, and that being able to watch the development
+process happen in public means people will find these bugs.
+
+I think the odds of this happening with a big and popular Debian package like Firefox is quite low.
+In fact, to my knowledge no Debian package that comes from the official repositories has ever 
+shipped Malware.
+
+That doesn't mean it hasn't happened in other linux distributions though. [Gentoo Linux](https://www.gentoo.org/) 
+shipped a trojan'd version of the [unrealircd IRC server](https://www.unrealircd.org/). 
+You can see the details of this at this [bug report](https://bugs.gentoo.org/323691).
+
+It is also true that while not strictly speaking Malware, and never having shipped in an
+actual production release, but only beta builds, bugs have been shipped in official packages that would
+destroy systems. I find this [bug](https://bugzilla.redhat.com/show_bug.cgi?id=1202858)
+in a beta of the [Squid web cache](http://www.squid-cache.org/) for 
+[RedHat Enterprise Linux](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux).
+
+```
+Steps to Reproduce:
+1. Login to RHEL 6.7 beta host with squid installed
+2. Start squid using "sudo service squid start"
+3. Restart squid using "sudo service squid restart"
+
+Expected results:
+=================
+Squid is restarted.
+
+Actual results:
+===============
+All files are deleted on the machine.
+```
