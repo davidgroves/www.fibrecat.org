@@ -207,16 +207,78 @@ main:
 4:
 ```
 </details>
+&nbsp;
 
-## Some self modifying code.
+## Problems with self modifying code.
 
+I'm going to do a demo of self modifying code in a moment, but first I'm going to explain why I'm not doing it in a modern OS and a modern
+set of tools, with a modern dialect of assembly like x64 or ARM64.
 
+There are many reasons that self modifying code is considered harmful and or dangerous.
 
+1. It is **REALLY** hard to understand. Much more if you don't expect it. Even more if you have no idea of the concept. This is most certiainly the type of
+dirty programming technique you need to write comments around !
 
+2. Modern operating systems make it hard to use. Tools such as Microsoft Windows 
+[arbitary code guard](https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/exploit-protection-reference?view=o365-worldwide#arbitrary-code-guard), 
+or Linux with [W^X](https://en.wikipedia.org/wiki/W%5EX) are designed to prevent security problems by literally preventing self modifying code.
 
+The Linux kernel itself makes extensive use of self modification, as shown in 
+Evgeniy Paltsev's [presentation to the embedded linux conference in 2019](https://elinux.org/images/b/be/SelfModifyngCode-rc6-public-slides.pdf), but the kernel
+itself is in an ideal place to do so and to make use of the advantages of doing so.
 
+## My example.
 
+This uses the [Masswerk 6502 simulator](https://www.masswerk.at/6502/assembler.html) to create and step through a program designed to do
+the same thing as the previous examples, but to do so in a self modifying way.
 
+```
+LDX #$00    ; Load 0 into the X register
+mainloop:
+NOP         ; Do nothing, imagine this is the "print"
+INX         ; Increment X, this code ends up at location 0x0003.
+CPX #$0A    ; Compare X with 10.
+BEQ setdec  ; Jump to self mod if 10.
+CPX #$00    ; Compare X with 0.
+BEQ setinc  ; Jump to self mod if 0.
+JMP mainloop ; Go around loop again.
 
+setinc:
+LDY #$E8    ; Put the bits for the INX instruction in the Y register.
+STY $0003   ; Store this in the INX location in the main code, the third line.
+JMP mainloop  ; Jump back to main code.
 
+setdec:
+LDY #$CA    ; Put the bits for the DEX instruction in the Y register
+STY $0003   ; Store this in the INX location in the main code, the third line.
+JMP mainloop  ; Jump back to main code
+```
 
+To experiment with this yourself.
+
+1. Go to the [masswerk emulator](https://www.masswerk.at/6502/assembler.html)
+1. Paste in this assembly above into the "src" section.
+1. Hit "Assemble".
+1. Copy the resulting object code from the "object code" window.
+1. Click "Show in Assembler".
+1. Paste the object code into the RAM section, with "Strip Leading Addresses" ticked.
+1. Click "Load Memory".
+1. Click "Continuous Run"
+
+Now you will be able to watch the value of `XR` climb up from 0 to 10 (A) and back again
+over and over again, and it is doing so using self modifying code.
+
+The two "functions", setinc and setdec both add an opcode to the Y register, and then
+store this in the program code itself directly. This is still a bit of a contrived example,
+you could obviously have these functions just increment and decrement X instead, but in
+less contrived examples this can result in significant performance gains on systems like the
+6502.
+
+## Takeaways
+
+Self modifying code is mostly a relic of the past, except in kernel development, or 
+on embedded systems. These are certainly not things I do much of day to day or have much
+experience with.
+
+However, if you did need a brief introduction to the concept of self modifying code, 
+I hope this blog post helped.
