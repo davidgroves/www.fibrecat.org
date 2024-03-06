@@ -11,10 +11,6 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   markdown: {
     syntaxHighlight: "shiki",
-    shikiConfig: {
-      theme: "vitesse-light",
-      langs: getLanguages()
-    },
     remarkPlugins: [mermaid, remarkMath]
   }
 });

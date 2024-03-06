@@ -190,3 +190,17 @@ errorbox {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.copy-code {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: #ffffff;
+	padding: 0.25rem 0.5rem;
+	font-size: 1.25rem;
+	line-height: 1rem;
+  }
+  
+  .copy-code:hover {
+	background-color: #d9ff00;
+  }

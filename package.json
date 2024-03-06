@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^1.0.3",
+    "@astrojs/prism": "^3.0.0",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "astro": "^3.0.7",
@@ -21,7 +22,8 @@
     "mermaid": "^10.4.0",
     "rehype-katex": "^6.0.3",
     "rehype-mermaidjs": "^2.0.0",
-    "remark-math": "^5.1.1"
+    "remark-math": "^5.1.1",
+    "shiki": "^1.1.7"
   },
   "devDependencies": {
     "prettier": "^3.0.3",
