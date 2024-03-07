@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # Bun
 bun.lockb
+
+# Packagelock
+package-lock.json
