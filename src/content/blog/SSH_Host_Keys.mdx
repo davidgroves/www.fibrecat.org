@@ -1,0 +1,48 @@
+---
+title: SSH Host Keys
+description: SSH Host Keys, useful or just a PITA.
+pubDate: 19 March 2024
+heroImage:
+heroCredit:
+heroLink:
+heroAltText:
+---
+
+import { Image } from 'astro:assets';
+
+## What are host keys.
+
+To avoid confusion, lets start with what the are not. They aren't user keys.
+### User keys (not host keys)
+
+- Split into public and private parts.
+- Stored (on unix like systems), usually in `.ssh/id_rsa` + `.ssh/id_rsa.pub`
+- For more modern eliptic curve based keys in files like `.ssh/id_ed25519` + `.ssh/id_ed25519.pub`.
+- Should have a passphare.
+- Should be used with an ssh-agent.
+
+SSH user keys might be a good future blog post, but they aren't for this one.
+
+### What ACTUALLY are host keys.
+
+If a user key identifies a user, a host key as the name suggests identifies a host. When
+you make an SSH connection to a computer, how can you be sure it is the computer you think it is ?
+
+In the world of the web, we have the HTTPS protocol, and SSL certificates to ensure some bad
+actor between you and the system you are trying to connect to isn't intercepting your connection.
+
+The typical infrastucture around SSH isn't quite so sophisticated, but it is designed to deliver
+the same kind of idea. That you can trust you really are connecting to the system you think you are.
+
+### Connecting to a system for the first time.
+
+Using standard tools and default configs, if you connect to a system for the very first time, 
+you will expect to see something like this.
+
+```
+$ ssh testhost.fibrecat.org
+The authenticity of host 'testhost.fibrecat.org (172.27.3.4)' can't be established.
+ED25519 key fingerprint is SHA256:UmQzMRW57s+3ZZVUwo+6dpDjLzTK5PGp8O6odlG0upY.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
