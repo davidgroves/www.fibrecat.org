@@ -4,6 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import '../styles/blogpost.css'
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -13,78 +14,7 @@ const { title, description, pubDate, updatedDate, heroImage, heroAltText, heroCr
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				display: block;
-  				margin-left: auto;
-  				margin-right: auto;
-			}
-			.hero-image img {
-				display: block;
-				margin: auto;
-				border-radius: 36px;
-				box-shadow: var(--box-shadow);
-				max-height: 50vh;
-	
-				aspect-ratio: auto;
-				
-			}
-			.hero-image-credit {
-				text-align: center;
-				font-size: 75%;
-			}
-			.prose {
-				width: 90%;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-				font-size: 12pt;
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-				font-size: 32pt;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-			.h1 {
-				font-size: 16pt;
-			}
-			blockquote {
-				background: #f9f9f9;
-				border-left: 10px solid #ccc;
-				margin: 1.5em 10px;
-				padding: 0.5em 10px;
-				quotes: "\201C""\201D""\2018""\2019";
-			}
-			blockquote:before {
-				color: #ccc;
-				content: open-quote;
-				font-size: 4em;
-				line-height: 0.1em;
-				margin-right: 0.25em;
-				vertical-align: -0.4em;
-			}
-			blockquote p {
-				display: inline;
-			}
-		</style>
+		<link rel="stylesheet" href="styles/blogpost.css">
 	</head>
 
 	<script>
