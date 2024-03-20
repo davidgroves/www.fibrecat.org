@@ -87,38 +87,6 @@ const { title, description, pubDate, updatedDate, heroImage, heroAltText, heroCr
 		</style>
 	</head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<div class="hero-image">
-						<img src={heroImage} alt={heroAltText} />
-					</div>
-					<div class="hero-image-credit">
-						<a href={heroLink}>Image by {heroCredit}</a>
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-
 	<script>
 		let copyButtonLabel = "Copy Code";
 		let codeBlocks = Array.from(document.querySelectorAll("pre"));
@@ -156,6 +124,36 @@ const { title, description, pubDate, updatedDate, heroImage, heroAltText, heroCr
 		  }, 700);
 		}
 	  </script>
-	  
-	  <slot />
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1>{title}</h1>
+						<hr />
+					</div>
+					<div class="hero-image">
+						<img src={heroImage} alt={heroAltText} />
+					</div>
+					<div class="hero-image-credit">
+						<a href={heroLink}>Image by {heroCredit}</a>
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
 </html>
