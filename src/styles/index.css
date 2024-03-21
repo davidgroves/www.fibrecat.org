@@ -1,0 +1,21 @@
+img {
+    max-height: 60vh;
+    /* image initial width */
+}
+
+div {
+    border: 2px dotted #000000;
+}
+
+.container {
+    width: 500px;
+    /* container initial width */
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}

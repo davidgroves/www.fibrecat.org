@@ -4,19 +4,6 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-:root {
-	--accent: #0015ff;
-	--accent-dark: #000d8a;
-	--black: #000000;
-	--gray: 96, 115, 159;
-	--gray-light: 210, 225, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	/* 
-	--box-shadow: 0 0px 0px rgba(var(--gray), 25%), 0 0px 0px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
-	*/
-}
 @font-face {
 	font-family: 'OpenSans';
 	src: url('/fonts/OpenSans-Regular.woff2') format('woff2');
@@ -37,10 +24,11 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
     overflow-y: scroll; /* Show vertical scrollbar */
-	color: rgb(var(--gray-dark));
 	font-size: 1em;
 	line-height: 1.7;
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background-color: black;
+	color: darkgrey;
 }
 
 main {
@@ -57,7 +45,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: white;
 	line-height: 1.2;
 }
 h1 {
@@ -80,11 +68,11 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: lightblue;
 	outline: 0;
 }
 a:hover {
-	color: var(--accent);
+	color: lightgoldenrodyellow;
 }
 p {
 	margin-bottom: 1em;

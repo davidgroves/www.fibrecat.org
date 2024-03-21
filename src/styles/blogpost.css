@@ -2,6 +2,7 @@ main {
     width: calc(100% - 2em);
     max-width: 100%;
     margin: 0;
+    background-color: black;
 }
 .hero-image {
     display: block;
@@ -11,10 +12,8 @@ main {
 .hero-image img {
     display: block;
     margin: auto;
-    border-radius: 36px;
-    box-shadow: var(--box-shadow);
-    max-height: 50vh;
-
+    border-radius: 48px;
+    max-height: 25vh;
     aspect-ratio: auto;
     
 }
