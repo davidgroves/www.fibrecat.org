@@ -23,7 +23,7 @@ body {
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-    overflow-y: scroll; /* Show vertical scrollbar */
+	overflow-y: scroll; /* Show vertical scrollbar */
 	font-size: 1em;
 	line-height: 1.7;
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
@@ -41,7 +41,6 @@ main {
 	margin: auto;
 	width: 90%;
 	max-width: 1600px;
-	padding: 10px;  
 }
 
 h1,

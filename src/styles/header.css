@@ -4,8 +4,8 @@ header {
     background-image: linear-gradient(green, black);
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
     color: white;
-    position: fixed;
-}
+    width: 100%;
+    
 h2 {
     margin: 0;
     font-size: 2em;
@@ -31,14 +31,19 @@ nav a.active {
     border-bottom-color: var(--accent);
     color: red;
 }
-.middle-links,
-.middle-links a {
+.middle-links {
+    left: 50%;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.middle-links a {
     border: none;
 }
 .right-links,
 .right-links a {
     display: flex;
+    margin-right: 5%;
     border: none;
 }
 @media (max-width: 720px) {
