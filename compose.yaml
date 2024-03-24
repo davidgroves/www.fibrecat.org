@@ -1,0 +1,4 @@
+services:
+  www.fibreat.org:
+    build: .
+    ports: 4321
