@@ -5,6 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import { mermaid } from "./src/plugins/mermaid";
 import remarkMath from 'remark-math';
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.fibrecat.org/',
@@ -12,5 +14,6 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: "shiki",
     remarkPlugins: [mermaid, remarkMath]
-  }
+  },
+  output: "static",
 });
