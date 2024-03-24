@@ -10,6 +10,10 @@ import '../styles/blogpost.css'
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, heroAltText, heroCredit, heroLink } = Astro.props;
+if (heroImage != undefined) {
+	import(heroImage)
+}
+
 ---
 
 <html lang="en">
@@ -32,7 +36,9 @@ const { title, description, pubDate, updatedDate, heroImage, heroAltText, heroCr
 		  codeBlock.setAttribute("tabindex", "0");
 		  codeBlock.appendChild(copyButton);
 		  // wrap codebock with relative parent element
-		  codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+		  if (codeBlock.parentNode != null) {
+		  	codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+		  }
 		  wrapper.appendChild(codeBlock);
 	  
 		  copyButton.addEventListener("click", async () => {
