@@ -21,6 +21,7 @@
     "katex": "^0.16.8",
     "mdx-mermaid": "^2.0.0",
     "mermaid": "^10.4.0",
+    "puppeteer": "^22.6.0",
     "rehype-katex": "^6.0.3",
     "rehype-mermaidjs": "^2.0.0",
     "remark-math": "^5.1.1",

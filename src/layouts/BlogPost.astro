@@ -10,10 +10,6 @@ import '../styles/blogpost.css'
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, heroAltText, heroCredit, heroLink } = Astro.props;
-if (heroImage != undefined) {
-	import(heroImage)
-}
-
 ---
 
 <html lang="en">
