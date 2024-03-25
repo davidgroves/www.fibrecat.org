@@ -1,10 +1,10 @@
 {
-  "name": "fibrecat",
+  "name": "@fibrecat/www",
   "type": "module",
   "version": "0.0.2",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

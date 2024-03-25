@@ -1,30 +1,12 @@
-FROM node:lts AS base
+FROM node:lts AS runtime
 WORKDIR /app
 
-# Fix Puppeteer problems
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-
-# By copying only the package.json and package-lock.json here, we ensure that the following `-deps` steps are independent of the source code.
-# Therefore, the `-deps` steps will be skipped if only the source code changes.
-COPY package.json package-lock.json ./
-
-FROM base AS prod-deps
-RUN npm install --omit=dev
-
-FROM base AS build-deps
-RUN npm install --omit=dev
-
-FROM build-deps AS build
 COPY . .
+
+RUN npm install
 RUN npm run build
 
-FROM base AS runtime
-COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
-
-### When we actually run the service
-ENV HOST=127.0.0.1
+ENV HOST=0.0.0.0
 ENV PORT=4321
-
-CMD ["node", "./dist/server/entry.mjs"]
+EXPOSE 4321
+ENTRYPOINT ["npm", "run", "astro", "dev"]
