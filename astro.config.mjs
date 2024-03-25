@@ -15,5 +15,10 @@ export default defineConfig({
     syntaxHighlight: "shiki",
     remarkPlugins: [mermaid, remarkMath]
   },
-  output: "static",
+  output: "server",
+  adapter: node(
+    {
+      mode: 'standalone',
+    }
+  ),
 });

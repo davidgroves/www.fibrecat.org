@@ -1,4 +1,5 @@
 services:
-  www.fibreat.org:
+  astro:
     build: .
-    ports: 4321
+    ports:
+      - [4321. 4321]
