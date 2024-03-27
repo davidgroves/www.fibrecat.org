@@ -1,8 +1,11 @@
+import { imageConfig } from 'astro:assets';
+import { image } from 'astro:assets';
+
 import { defineCollection, z } from 'astro:content';
 
 const blog = defineCollection({
 	// Type-check frontmatter using a schema
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		// Transform string to Date object
@@ -14,10 +17,10 @@ const blog = defineCollection({
 			.string()
 			.optional()
 			.transform((str) => (str ? new Date(str) : undefined)),
-		heroImage: z.string().optional(),
-		heroAltText: z.string().optional(),
-		heroLink: z.string().optional(),
-		heroCredit: z.string().optional(),
+		heroAltText: z.string(),
+		heroLink: z.string(),
+		heroCredit: z.string(),
+		heroImage: image().refine((img) => img.width >= 600),
 	}),
 });
 
