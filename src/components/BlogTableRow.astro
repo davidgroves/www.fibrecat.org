@@ -1,10 +1,19 @@
 ---
+import { Temporal } from '@js-temporal/polyfill';
+
 const { date, title, link } = Astro.props;
 
 const my_date = new Date(date);
+
+function formatString(datestring: string) {
+    const day = datestring.slice(8, 10);
+    const month = datestring.slice(4, 7);
+    const year = datestring.slice(11);
+    return year + ", " + day + " " + month + " ";
+}
 ---
 
 <tr>
     <td><a href={link}>{title}</a></td>
-    <td data-id={my_date.valueOf()}>{my_date.toLocaleDateString()}</td>
+    <td data-id={my_date.valueOf()}>{formatString(my_date.toDateString().slice())}</td>
 </tr>
