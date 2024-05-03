@@ -16,7 +16,7 @@ export default defineConfig({
     syntaxHighlight: "shiki",
     remarkPlugins: [mermaid, remarkMath]
   },
-  output: "hybrid",
+  output: "static",
   adapter: node(
     {
       mode: 'standalone',
