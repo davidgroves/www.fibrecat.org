@@ -1,7 +1,7 @@
 .faq-heading{
     border-bottom: white;
     padding: 5px 10px;
-    font-size: 20px;
+    font-size: 125%;
     border: none !important;
     outline: none;
 }
@@ -14,11 +14,11 @@ outline: none !important;
 }
 .faq-question {
     outline: none;
-    font-size: 8px;
+    font-size: 120%;
 }
 .faq-body {
     outline: none;
-    font-size: 14px;
+    font-size: 100%;
 }
 
 .hr-line{
@@ -64,7 +64,7 @@ margin: none;
 .faq-page:after {
     content: '\02795';
     /* Unicode character for "plus" sign (+) */
-    font-size: 26px;
+    font-size: 100%;
     color: white;
     float: right;
     /* margin-left: 5px; */

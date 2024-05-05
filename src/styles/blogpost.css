@@ -6,14 +6,14 @@
 .hero-image img {
     display: block;
     margin: auto;
-    border-radius: 48px;
-    max-height: 25vh;
+    border-radius: 8px;
+    max-height: 40vh;
     aspect-ratio: auto;
     
 }
 .hero-image-credit {
     text-align: center;
-    font-size: 75%;
+    font-size: 80%;
 }
 .prose {
     width: 90%;
@@ -21,7 +21,7 @@
     margin: auto;
     padding: 1em;
     color: rgb(var(--gray-dark));
-    font-size: 12pt;
+    font-size: 100%;
 }
 .title {
     margin-bottom: 1em;
@@ -31,7 +31,7 @@
 }
 .title h1 {
     margin: 0 0 0.5em 0;
-    font-size: 32pt;
+    font-size: 175%;
 }
 .date {
     margin-bottom: 0.5em;
@@ -41,7 +41,7 @@
     font-style: italic;
 }
 .h1 {
-    font-size: 16pt;
+    font-size: 125%;
 }
 blockquote {
     background: #f9f9f9;
@@ -53,7 +53,7 @@ blockquote {
 blockquote:before {
     color: #ccc;
     content: open-quote;
-    font-size: 4em;
+    font-size: 100%;
     line-height: 0.1em;
     margin-right: 0.25em;
     vertical-align: -0.4em;
