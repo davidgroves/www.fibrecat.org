@@ -5,15 +5,17 @@ header {
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
     color: white;
     width: 100%;
-    
-h2 {
-    margin: 0;
-    font-size: 200%;
 }
+
+/* h2 {
+    margin: 0;
+    font-size: 140%;
+}
+
 h2 a,
 h2 a.active {
     text-decoration: none;
-}
+} */
 nav {
     display: flex;
     align-items: center;
