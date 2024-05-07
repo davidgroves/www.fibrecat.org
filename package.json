@@ -1,7 +1,7 @@
 {
   "name": "@fibrecat/www",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev --host",
@@ -23,6 +23,8 @@
     "katex": "^0.16.8",
     "mdx-mermaid": "^2.0.0",
     "mermaid": "^10.4.0",
+    "postcss-csso": "^6.0.1",
+    "postcss-preset-env": "^9.5.11",
     "puppeteer": "^22.6.0",
     "rehype-katex": "^6.0.3",
     "rehype-mermaid": "^2.0.0",
