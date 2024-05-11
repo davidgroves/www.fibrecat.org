@@ -11,7 +11,7 @@ echo "======================================"
 
 sed -i 's/output: "\(.*\)"/output: "'hybrid'"/g' astro.config.mjs
 
-rm -rf node_modules package.json
+rm -rf node_modules package-lock.json
 
 docker buildx build -t pumplekin/fibrecat.org:astro-armv8 --platform linux/arm/v8 .
 docker push pumplekin/fibrecat.org:astro-armv8
