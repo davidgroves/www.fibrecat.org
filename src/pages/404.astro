@@ -13,12 +13,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header title={SITE_TITLE} />
 		<main>
-			<h1 align="center">{SITE_TITLE}</h1>
+			<h1 class="text-center">{SITE_TITLE}</h1>
 			<errorbox>
-                <p align="center">
+                <p class="text-center">
 				Oops ... a <a href="https://http.cat/404">404</a> error was returned.
                 </p>
-                <p align="center">
+                <p class="text-center">
                 <a href={Astro.url.pathname}>{Astro.url.pathname}</a> could not be found.
                 </p>
 			</errorbox>

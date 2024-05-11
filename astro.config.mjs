@@ -10,7 +10,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.fibrecat.org/',
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [tailwind(), sitemap(), mdx()],
   markdown: {
     syntaxHighlight: "shiki",
     remarkPlugins: [mermaid, remarkMath]

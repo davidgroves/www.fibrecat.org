@@ -2,7 +2,12 @@
 
 echo "======================================"
 echo "Deploying SSR Site to neptune and zeus"
+echo " HAVE YOU BUMPED THE VERSION NUMBER ? "
+echo " HAVE YOU BUMPED THE VERSION NUMBER ? "
+echo " HAVE YOU BUMPED THE VERSION NUMBER ? "
+echo " HAVE YOU BUMPED THE VERSION NUMBER ? "
 echo "======================================"
+
 
 sed -i 's/output: "\(.*\)"/output: "'hybrid'"/g' astro.config.mjs
 docker buildx build -t pumplekin/fibrecat.org:astro-armv8 --platform linux/arm/v8 .
