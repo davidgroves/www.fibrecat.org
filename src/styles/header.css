@@ -7,15 +7,6 @@ header {
     width: 100%;
 }
 
-/* h2 {
-    margin: 0;
-    font-size: 140%;
-}
-
-h2 a,
-h2 a.active {
-    text-decoration: none;
-} */
 nav {
     display: flex;
     align-items: center;
@@ -38,6 +29,7 @@ nav a.active {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
 }
 .middle-links a {
     border: none;

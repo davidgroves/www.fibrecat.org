@@ -1,7 +1,7 @@
 .faq-heading{
     border-bottom: white;
     padding: 5px 10px;
-    font-size: 125%;
+    font-size: 300%;
     border: none !important;
     outline: none;
 }
@@ -46,18 +46,18 @@ margin: none;
     width: 98%; 
     padding: auto;
     outline: none;
-    background-color: darkslategrey;
+    background-color: yellow;
     
 }
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active,
 .faq-page:hover {
-    background-color: darkblue;
+    background-color: rgb(32, 139, 0);
 }
 /* Style the faq-page panel. Note: hidden by default */
 .faq-body {
     padding: 0 2px;
-    background-color: darkslategrey;
+    background-color: rgb(66, 73, 73);
     display: none;
     overflow: hidden;
 }
@@ -67,6 +67,8 @@ margin: none;
     font-size: 100%;
     color: white;
     float: right;
+    background-color: yellow;
+    color: yellow;
     /* margin-left: 5px; */
 }
 .active:after {
