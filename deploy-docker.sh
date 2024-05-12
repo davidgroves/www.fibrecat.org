@@ -19,11 +19,11 @@ docker push pumplekin/fibrecat.org:astro-armv8
 ssh dwg@neptune.fibrecat.org docker pull pumplekin/fibrecat.org:astro-armv8
 ssh dwg@zeus.fibrecat.org docker pull pumplekin/fibrecat.org:astro-armv8
 
-ssh dwg@neptune.fibrecat.org docker restart astro
-ssh dwg@zeus.fibrecat.org docker restart astro
+ssh dwg@neptune.fibrecat.org docker restart pumplekin/fibrecat.org:astro-armv8
+ssh dwg@zeus.fibrecat.org docker restart pumplekin/fibrecat.org:astro-armv8
 
-#ssh dwg@neptune.fibrecat.org docker run -dit -p 127.0.0.1:4321:4321 --name astro --restart=on-failure:5 pumplekin/fibrecat.org:astro-armv8
-#ssh dwg@zeus.fibrecat.org docker run -dit -p 127.0.0.1:4321:4321 --name astro --restart=on-failure:5 pumplekin/fibrecat.org:astro-armv8
+ssh dwg@neptune.fibrecat.org docker run -dit -p 127.0.0.1:4321:4321 --name astro --restart=on-failure:5 pumplekin/fibrecat.org:astro-armv8
+ssh dwg@zeus.fibrecat.org docker run -dit -p 127.0.0.1:4321:4321 --name astro --restart=on-failure:5 pumplekin/fibrecat.org:astro-armv8
 
 
 echo "========================="

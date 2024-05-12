@@ -4,7 +4,6 @@ import sitemap from '@astrojs/sitemap';
 import { mermaid } from "./src/plugins/mermaid";
 import remarkMath from 'remark-math';
 import node from "@astrojs/node";
-
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
