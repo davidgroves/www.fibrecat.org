@@ -51,22 +51,34 @@ h5,
 h6 {
 	margin: 0 0 0.5rem 0;
 	color: white;
-	line-height: 1.2;
+	line-height: 1.4;
 }
+
+
 h1 {
-	font-size: 150%;
+	font-size: 200%;
+	padding-top: 0.2em;
+	padding-bottom: 0.5em;
 }
-/* h2 {
-	font-size: 130%;
-} */
+h2 {
+	font-size: 170%;
+	padding-top: 0.2em;
+	padding-bottom: 0.3em;
+}
 h3 {
-	font-size: 120%;
+	font-size: 140%;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
 }
 h4 {
-	font-size: 110%;
+	font-size: 125%;
+	padding-top: 0.2em;
+	padding-bottom: 0.1em;
 }
 h5 {
-	font-size: 105%;
+	padding-top: 0.1em;
+	padding-bottom: 0.05em;
+	font-size: 110%;
 }
 strong,
 b {
@@ -111,7 +123,7 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
-	font-size: 110%;
+	font-size: 90%;
 }
 pre > code {
 	all: unset;
@@ -168,7 +180,7 @@ strong {
 	white-space: nowrap;
 }
 
-errorbox {
+.errorbox {
 	display: grid;
 	align-items: center;
 	justify-content: center;
@@ -197,4 +209,12 @@ errorbox {
   
   .copy-code:hover {
 	background-color: #d9ff00;
+  }
+
+  .ul {
+	list-style: disc;
+  }
+
+  .ol {
+	list-style: decimal;
   }

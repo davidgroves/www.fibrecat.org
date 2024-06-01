@@ -11,14 +11,12 @@ heroAltText: A shot of beams of light created by zooming a camera while the shut
 import { Image } from 'astro:assets';
 import TwoNicPi from '../../../src/assets/blog/TwoNicPi.webp';
 
-# Some Background
-
-Click here to skip straight to the [examples](#Examples).
+[Skip straight to the examples](#Examples).
 
 ## What is Latency, Bandwidth and Loss ?
 
 Network performance is a complex topic, and there is more detail than I'm going to be able to cover in this blog post, so this does a lot of simplification, both intentionally and unintentionally.
-
+"
 Bandwidth and Latency are two measurements typically used to describe network performance. Bandwidth is how much data you can send between two computersin a given period of time.
 Latency is how long it takes to get the smallest unit of data from one computer to another. An unexcat analogy is bandwidth is how many palletes you can load onto a truck, and latency is how long it takes a truck to get from a factory to a warehouse.
 
@@ -60,7 +58,7 @@ Users with packetloss are going to experience intermittenaly poor connectivity. 
 
 But for a single packet, it will take the timeout for the ACK. How long this is implementation dependant, but at worst it can be several seconds. This is like the [Two General's Problem](https://en.wikipedia.org/wiki/Two_Generals%27_Problem). You can't detect a packet has been dropped and do a fast retransmission if you have no way to know if you should have seen a packet or not in the first place.
 
-# Simulating Network Conditions with Linux.
+# Examples
 
 ### Example1: Adding outbound latency with tc
 
@@ -78,7 +76,12 @@ rtt min/avg/max/mdev = 117.666/119.381/121.019/1.003 ms
 
 $ sudo tc qdisc del dev enp7s0 root netem delay 100ms
 $ ping -c 10 -q www.google.com
-PING www.google.com (2a00:1450:4009:823::2004) 56 data bytes
+PING www.google.com (2a00:1450:4009:823::2004) 56 data bytesSkip straight to the examples](#Examples).
+
+## What is Latency, Bandwidth and Loss ?
+
+Network performance is a complex topic, and there is more detail than I'm going to be able to cover in this blog post, so this does a lot of simplification, both intentionally and unintentionally.
+
 rtt min/avg/max/mdev = 18.647/20.588/22.283/1.110 ms
 ```
 
