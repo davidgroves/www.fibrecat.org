@@ -22,11 +22,9 @@ for REMOTEHOST in neptune zeus; do
     echo "Doing ${REMOTEHOST}"
     docker context use ${REMOTEHOST}
     docker pull pumplekin/fibrecat.org:astro-armv8
-    docker stop pumplekin/fibrecat.org:astro-armv8
+    docker stop astro
+    docker rm astro
     docker run -dit -p 127.0.0.1:4321:4321 --name astro --restart=on-failure:5 pumplekin/fibrecat.org:astro-armv8
-    if [ $? -ne 0 ]; then
-        docker restart astro
-    fi
 done
 
 echo "========================="
