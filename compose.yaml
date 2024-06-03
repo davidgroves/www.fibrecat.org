@@ -1,4 +1,0 @@
-services:
-  fibrecat.org:
-    build: .
-    ports: "4321:4321"
