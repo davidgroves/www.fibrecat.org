@@ -1,7 +1,7 @@
 ---
 title: Self Modifying Code
 description: What is it, and can you use it today ?
-pubDate: 2 February 2024
+pubDate: 15 June 2024
 heroImage: ../../assets/blog/italian_dragon.jpeg
 heroCredit: Ravit Sages @ Unsplash
 heroLink: https://unsplash.com/photos/gXyptwjk9aw
@@ -13,15 +13,15 @@ import { Image } from 'astro:assets';
 ## What is self modifying code.
 
 It is like the name itself suggests, code which as part of what it is designed to do when you run it, modifies itself.
-It is now considered an extreme optimisation for most development, and somethng that should in general be avoided. It used to be much
-more common though, and is still something used in the embeded software industry where every byte of memory or every clock cycle
-counts.
 
-## A bad high level example.
+It is basically a relic of the past, except perhaps in kernel development, or on embedded systems, and even then the costs almost certainly outweigh the benefits in most cases.
 
-Here is an example in Python that uses the [operator](https://docs.python.org/3/library/operator.html) standard library functions in
-order to swap in an operator based on changes in the state of the program. I say this is a bad example as it isn't **really** an example of self
-modifying code, as it the actual code run doesn't change, but it kind of looks like it does to the reader of the program.
+## A REALLY bad high level example.
+
+This isn't self modifying code, but it gives you the jist of the idea in a high level language.
+
+This is Python that uses the [operator](https://docs.python.org/3/library/operator.html) standard library functions in
+order to swap in an operator based on changes in the state of the program. 
 
 This program will count up from 0 to 10, then count back down to 0 again and repeat this ad infinitum.
 
@@ -221,18 +221,18 @@ dirty programming technique you need to write comments around !
 
 2. Modern operating systems make it hard to use. Tools such as Microsoft Windows 
 [arbitary code guard](https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/exploit-protection-reference?view=o365-worldwide#arbitrary-code-guard), 
-or Linux with [W^X](https://en.wikipedia.org/wiki/W%5EX) are designed to prevent security problems by literally preventing self modifying code.
+or Linux with [W^X](https://en.wikipedia.org/wiki/W%5EX), (Write XOR Execute, also sometimes called XD, DX, for Execute Bit Disable) are designed to prevent security problems by literally preventing self modifying code.
 
 The Linux kernel itself makes extensive use of self modification, as shown in 
-Evgeniy Paltsev's [presentation to the embedded linux conference in 2019](https://elinux.org/images/b/be/SelfModifyngCode-rc6-public-slides.pdf), but the kernel
-itself is in an ideal place to do so and to make use of the advantages of doing so.
+Evgeniy Paltsev's [presentation to the embedded linux conference in 2019](https://elinux.org/images/b/be/SelfModifyngCode-rc6-public-slides.pdf), you still shouldn't use this in the old school way of modifying code you are actually executing.
 
-## My example.
+## And Old School Example.
 
-This uses the [Masswerk 6502 simulator](https://www.masswerk.at/6502/assembler.html) to create and step through a program designed to do
-the same thing as the previous examples, but to do so in a self modifying way.
+This very old example uses an ancient CPU and dialect of assembly, as this is where I first learned this technique, and honestly it is the only place I have ever actually used it.
 
-```
+This uses the [Masswerk 6502 simulator](https://www.masswerk.at/6502/assembler.html) to create and step through a program designed to do the same thing as the previous examples, but to do so in a real self modifying way.
+
+```assembly
 LDX #$00    ; Load 0 into the X register
 mainloop:
 NOP         ; Do nothing, imagine this is the "print"
@@ -258,21 +258,37 @@ To experiment with this yourself.
 
 1. Go to the [masswerk emulator](https://www.masswerk.at/6502/assembler.html)
 1. Paste in this assembly above into the "src" section.
-1. Hit "Assemble".
-1. Copy the resulting object code from the "object code" window.
-1. Click "Show in Assembler".
+1. Click "Assemble".
+1. Click "Show in Emulator".
 1. Paste the object code into the RAM section, with "Strip Leading Addresses" ticked.
 1. Click "Load Memory".
-1. Click "Continuous Run"
+1. Click "Show Memory".
+1. Click "Live Update" for memory.
+1. Tick "Trace" so you can watch each instruction as it is executed. 
+1. Click "Continuous Run".
 
-Now you will be able to watch the value of `XR` climb up from 0 to 10 (A) and back again
-over and over again, and it is doing so using self modifying code.
+Now you will be able to watch the value of the `XR` register  climb up from 0 to 10 (A) and back again
+over and over, just like the previous examples and it is doing so using self modifying code.
 
-The two "functions", setinc and setdec both add an opcode to the Y register, and then
-store this in the program code itself directly. This is still a bit of a contrived example,
-you could obviously have these functions just increment and decrement X instead, but in
-less contrived examples this can result in significant performance gains on systems like the
-6502.
+You can watch the self modifying code working by looking at the first line of the memory. It toggles between these two states.
+
+```
+GOING UP:
+0000: A2 00 EA E8 E0 0A F0 0F
+
+GOING DOWN:
+0000: A2 00 EA CA E0 0A F0 0F` 
+```
+
+The `E8` instruction in 6502 assembler is [`INX`](http://www.6502.org/tutorials/6502opcodes.html#INX), and the `CA` instruction is [`DEX`](http://www.6502.org/tutorials/6502opcodes.html#DEX).
+
+
+The two "functions", setinc and setdec both add an one of these opcodes to the Y register, and then
+store this in the program code itself directly (at location 0003). 
+
+This is still a bit of a contrived example, but it gives the jist of the idea. Back in the 8bit and 16bit days, these techniques were used to optimise code, particularly in games.
+
+You will find plenty of cases of them in 6502 code, 
 
 ## Takeaways
 
@@ -280,5 +296,4 @@ Self modifying code is mostly a relic of the past, except in kernel development,
 on embedded systems. These are certainly not things I do much of day to day or have much
 experience with.
 
-However, if you did need a brief introduction to the concept of self modifying code, 
-I hope this blog post helped.
+However, if you did need a brief introduction to the concept of self modifying code, I hope this blog post helped.

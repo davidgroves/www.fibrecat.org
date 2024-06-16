@@ -205,16 +205,23 @@ strong {
 	padding: 0.25rem 0.5rem;
 	font-size: 100%;
 	line-height: 1rem;
-  }
+}
   
-  .copy-code:hover {
-	background-color: #d9ff00;
-  }
+.copy-code:hover {
+    background-color: #d9ff00;
+}
 
-  .ul {
-	list-style: disc;
-  }
+ul {
+	list-style-type: square;
+}
 
-  .ol {
-	list-style: decimal;
-  }
+ol {
+	list-style-type: ordinal;
+}
+
+footer {
+	padding: 2em 1em 6em 1em;
+	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	color: rgb(var(--gray));
+	text-align: center;
+}
