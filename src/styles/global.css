@@ -201,22 +201,28 @@ strong {
 	position: absolute;
 	top: 0;
 	right: 0;
-	background-color: #ffffff;
+	background-color: #000000;
+	color: lightblue;
 	padding: 0.25rem 0.5rem;
-	font-size: 100%;
+	font-size: 120%;
 	line-height: 1rem;
 }
   
 .copy-code:hover {
-    background-color: #d9ff00;
+    background-color: yellow;
+	color: black;
 }
 
 ul {
+	padding-left: 5%;
 	list-style-type: square;
+	font-size: 100%;
 }
 
 ol {
+	padding-left: 5%;
 	list-style-type: ordinal;
+	font-size: 100%;
 }
 
 footer {
