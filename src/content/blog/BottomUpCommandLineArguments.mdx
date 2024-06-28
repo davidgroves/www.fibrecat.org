@@ -1,0 +1,108 @@
+---
+title: CLI Arguments from the Bottom Up.
+description: Understanding how programs parse CLI arguments, but from the bottom up.
+pubDate: 28 June 2024
+heroImage: ../../assets/blog/fonts.jpeg
+heroCredit: Fabio Santaniello Bruun @ Unsplash
+heroLink: https://unsplash.com/photos/Y6tGu-OH8lA
+heroAltText: A set of letters in different typefaces on a wall.
+---
+import { Image } from 'astro:assets';
+
+## What are CLI Arguments ?
+
+CLI Arguments are the arguments you pass to a program when you run it. They have some conventions around how they work, but they are not a standard. Different programs may have different rules.
+
+For example, the `ls` command, which lists files, has a `-l` option to list in long format or a `-a` option to list all files including hidden files. The `git` command has a `add`, `commit` and `pull` subcommands. Many programs have a `--help` option which prints out help information, and a `--version` option which prints out the version of the program, but not all.
+
+## What is responsible ?
+
+The program itself is responsible for parsing the arguments. Usually you will use a library to do this, such as [getopt](https://man7.org/linux/man-pages/man3/getopt.3.html) in C, [argparse](https://docs.python.org/3/library/argparse.html) in Python or [clap](https://docs.rs/clap/latest/clap/) in Rust. However you can also do this in a more raw way, for example by examining the [sys.argv](https://docs.python.org/3/library/sys.html#sys.argv) list in Python.
+
+## Most basic example.
+
+Lets start by making a very basic example. We will write a program that does nothing, and then dump its memory space while it is running and examine it, looking for the arguments it was passed.
+
+```c
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+    printf("PID: %ld\n", (long)getpid());
+    sleep(180);
+    exit(EXIT_SUCCESS);
+}
+```
+
+This is a very simple C program, it just sleeps for 180 seconds, and then exits. So what happens if we run it with some
+command line arguments ?. Well, outside a boring wait to check, nothing.
+
+```shell
+$ gcc -o sleep sleep.c
+$ ./sleep QWERTYUIOP
+PID 54225
+<3 min wait>
+$ echo $?
+0
+```
+
+So lets dump the memory space of this program while it is running (which is why it has the long sleep in it).
+
+```shell
+$ ./sleep ThisIsALongMessageIHopeICanFind
+PID 129031
+
+$ gdb -p 129031
+(gdb) attach 129031
+Attaching to process 129031
+...
+
+(gdb) info proc mappings
+(gdb) info proc mappings
+process 129031
+Mapped address spaces:
+
+          Start Addr           End Addr       Size     Offset  Perms  objfile
+      0x558171563000     0x558171564000     0x1000        0x0  r--p   /home/dwg/CODE/playpen/sleep
+      0x558171564000     0x558171565000     0x1000     0x1000  r-xp   /home/dwg/CODE/playpen/sleep
+      ...
+      ...
+      0x7ffd4de56000     0x7ffd4de77000    0x21000        0x0  rw-p   [stack]
+
+(gdb) x/-96s 0x7ffd4de77000
+0x7ffd4de7615a:	""
+0x7ffd4de7615b:	"./sleep"
+0x7ffd4de76163:	"ThisIsALongMessageIHopeICanFind"
+0x7ffd4de76183:	"SHELL=/bin/bash"
+0x7ffd4de76193:	"EDITOR=vim"
+```
+
+### What, what did we do ?
+
+- We ran the sleep program with a long command line argument. 
+- We ran gdb, and attached to the process.
+- We looked at the memory mappings allocated to the process.
+- We found the stack.
+- We inspected the memory (the x part),
+  - We looked at the stack (the 0x7ffd4de77000 part, which is the end address of the stack)
+  - starting form the bottom (the -96) part
+  - and we looked for strings (the s part).
+
+And doing this we found our command line argument on the stack, and we also found our environment variables as well.
+
+We can confirm this, by repeating the process with two command line arguments, and seeing what we get. I'll shortcut this.
+
+```shell
+$ ./sleep CommandLineArgument1 CommandLineArgument2
+PID 129031
+
+$ gdb -p 129031
+(gdb) attach 129031
+(gdb) info proc mappings
+(gdb) x/-96s 0x7ffcac2c4000
+0x7ffcac2c3151:	"./sleep"
+0x7ffcac2c3159:	"CommandLineArgument1"
+0x7ffcac2c316e:	"CommandLineArgument2"
+0x7ffcac2c3183:	"SHELL=/bin/bash"
+0x7ffcac2c3193:	"EDITOR=vim"
+```
