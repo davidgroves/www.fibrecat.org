@@ -11,8 +11,6 @@ export const prerender = true;
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, heroAltText, heroCredit, heroLink } = Astro.props;
-// const images = import.meta.glob<{ default: ImageMetadata }>("../assets/**/*.{jpeg,jpg,png}");
-// if (!images[heroImagePath]) throw new Error(`"${heroImagePath}" does not exist in glob: "/../assets/**/*.{jpeg,jpg,png}"`);
 ---
 
 

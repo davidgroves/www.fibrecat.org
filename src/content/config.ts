@@ -1,5 +1,5 @@
 import { imageConfig } from 'astro:assets';
-import { image } from 'astro:assets';
+import { Image } from 'astro:assets';
 
 import { defineCollection, z } from 'astro:content';
 
@@ -20,7 +20,7 @@ const blog = defineCollection({
 		heroAltText: z.string(),
 		heroLink: z.string(),
 		heroCredit: z.string(),
-		heroImage: image().refine((img) => img.width >= 600),
+		heroImage: image()
 	}),
 });
 

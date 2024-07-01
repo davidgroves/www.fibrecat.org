@@ -9,8 +9,6 @@ heroAltText: Network cables connected to switches.
 ---
 
 import { Image } from 'astro:assets';
-import { LossHistogram1 } from '../../../src/assets/blog/LossHistogram1.png';
-import { LossHistogram2 } from '../../../src/assets/blog/LossHistogram2.png';
 
 
 ## Article Style.
@@ -344,8 +342,6 @@ if __name__ == "__main__":
     data = load_file(filename)
     create_histogram(data)
 ```
-
-{LossHistogram1}
 
 Now lets check what happens when we bin packets going in the other direction, from the server to the client. So this will be the SYN+ACK, the 3 data packets we looked at earlier, the FIN and then the FIN+ACK.
 
