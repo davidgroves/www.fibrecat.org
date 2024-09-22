@@ -1,0 +1,49 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+import '../../styles/index.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <BaseHead title={SITE_TITLE} description="Variable Rate Income Taxes"/>
+</head>
+<body>
+    <Header title={SITE_TITLE} />
+
+    <main>
+        <h1>Variable Rate Income Taxes</h1>
+
+        <div class="description">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisi quis malesuada facilisis, nunc massa ultricies leo, non sollicitudin libero odio ac arcu. 
+                Curabitur imperdiet sapien ut elit vehicula convallis. Nulla facilisi. Praesent mollis ipsum eget nisl scelerisque, nec pharetra nisl pretium. Vestibulum in risus orci. 
+                Integer pellentesque massa vitae magna sagittis, at posuere eros ultricies. Suspendisse potenti.
+            </p>
+        </div>
+
+        <div class="chart-container" style="position: relative; height:60vh; width:80vw">
+            <canvas id="incomeTaxChart"></canvas>
+        </div>
+
+        <form id="controls">
+            <label>
+                <input type="range" id="incomeSlider" min="0" max="100000" value="35000">
+            </label>
+            <br/><br/>
+            <label>
+                <input type="checkbox" id="current" checked> Current
+            </label>
+            <label>
+                <input type="checkbox" id="variableRate" checked> Variable-Rate
+            </label>
+        </form>
+    </main>
+    
+    <Footer />
+</body>
+</html>
