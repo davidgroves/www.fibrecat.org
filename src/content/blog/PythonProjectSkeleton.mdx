@@ -31,7 +31,7 @@ I like [Python](https://www.python.org/) as a high level language, and in the pl
 $ uv init --package --project $PROJECTNAME --vcs git --app
 ```
 
-Replace `--app` with `--lib` if you are creating a library you only intend to import.
+Replace `--app` with `--lib` if you are creating a library you only intend to import, and `--package` if you want to create an importable package.
 
 This will :-
 
@@ -105,6 +105,7 @@ uv init --package --project $PROJECTNAME --vcs git --app
 uv add --dev pytest
 uv add --dev ruff
 uv add --dev mypy
+uv sync
 
 # Create the tests directory and add an example test file.
 mkdir $PROJECTNAME/tests
@@ -115,9 +116,4 @@ import $PROJECTNAME.main
 def test_add():
 	assert $PROJECTNAME.main.add(1, 1) == 2
 EOF > $PROJECTNAME/tests/test_main.py
-
-## Add
- 
-
-
 ```
