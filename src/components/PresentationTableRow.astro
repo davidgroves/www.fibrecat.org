@@ -1,0 +1,10 @@
+---
+const { date, title, venue, summary, link, venue_link} = Astro.props;
+---
+
+<tr>
+    <td><a href={link}>{title}</a></td>
+    <td><a href={link}>{summary}</a></td>
+    <td>{date}</td>
+    <td><a href={venue_link}>{venue}</a></td>
+</tr>

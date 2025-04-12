@@ -1,0 +1,44 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import PresentationTableRow from "../components/PresentationTableRow.astro";
+import '../styles/faqs.css'
+import '../styles/tables.css';
+import '../styles/sortable.css';
+
+---
+
+<!doctype html>
+<html lang="en">
+  <script
+    src="https://cdn.jsdelivr.net/gh/tofsjonas/sortable@latest/sortable.min.js"
+  ></script>
+
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+
+  <Header title={SITE_TITLE} />
+  
+  <table class="sortable searchable">
+    <thead>
+      <tr>
+        <th>Presentation Title</th>
+        <th>Summary</th>
+        <th>Date</th>
+        <th>Venue</th>
+      </tr>
+    </thead>
+    <tbody>
+      <PresentationTableRow 
+        title="Do you have the time?" 
+        date="2025-03-13" 
+        venue="NetLDN"
+        venue_link="https://www.netldn.uk/"
+        summary="An introduction to NTP and PTP for time sync in datacentres." 
+        link="https://time.slides.fibrecat.org/"
+      />
+    </tbody>
+  </table>
+  <Footer />
+</html>
